@@ -21,27 +21,35 @@ public class Sheet : MonoBehaviour
     public string SheetBy { set; get; }
     public string Difficult { set; get; }
 
+    int lanecount;
+
+
+
     // [NoteInfo]
-    public List<float> noteList1 = new List<float>();
-    public List<float> noteList2 = new List<float>();
-    public List<float> noteList3 = new List<float>();
-    public List<float> noteList4 = new List<float>();
+
+
+    public List<List<float>> noteLists = new List<List<float>>();
 
     void Awake()
     {
+        int lanecount = 4;
+
+        for (int i = 0; i < lanecount; i++)//나중에 레인 여러개일수도
+        {
+            noteLists.Add(new List<float>());
+        }
+
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start()
+    {
+
     }
 
     public void SetNote(int laneNumber, float noteTime)
     {
-        if (laneNumber.Equals(1))
-            noteList1.Add(noteTime);
-        else if (laneNumber.Equals(2))
-            noteList2.Add(noteTime);
-        else if (laneNumber.Equals(3))
-            noteList3.Add(noteTime);
-        else if (laneNumber.Equals(4))
-            noteList4.Add(noteTime);
+        noteLists[laneNumber-1].Add(noteTime);
     }
 
     void showInfo()

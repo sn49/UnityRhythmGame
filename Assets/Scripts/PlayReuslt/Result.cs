@@ -69,14 +69,14 @@ public class Result : MonoBehaviour
 
         // 판정부 문자열 연산 최적화
         StringBuilder judge = new StringBuilder();
-        judge.Append("GREAT   ");
-        judge.Append(score.GreatCnt.ToString());
+        judge.Append("Soso   ");
+        judge.Append(score.JudgeCnt[0].ToString());
         judge.Append("\n");
-        judge.Append("GOOD    ");
-        judge.Append(score.GoodCnt.ToString());
+        judge.Append("Bad    ");
+        judge.Append(score.JudgeCnt[1].ToString());
         judge.Append("\n");
-        judge.Append("MISS       ");
-        judge.Append(score.MissCnt.ToString());
+        judge.Append("Worst       ");
+        judge.Append(score.JudgeCnt[2].ToString());
         textSongJudge.text = judge.ToString();
 
         textSongCombo.text = "MAX Combo  " + score.MaxCombo.ToString();
