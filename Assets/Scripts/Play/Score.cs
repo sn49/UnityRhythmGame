@@ -11,9 +11,8 @@ public class Score : MonoBehaviour
 
 
     public int SongScore { private set; get; }
-    public int MissCnt { private set; get; }
-    public int GoodCnt { private set; get; }
-    public int GreatCnt { private set; get; }
+
+    public Dictionary<string, int> JudgeCnt;
     public int Combo { private set; get; }
     public int MaxCombo { private set; get; }
 
@@ -27,47 +26,49 @@ public class Score : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+
         textScore = GameObject.Find("ScoreText").GetComponent<Text>();
         textJudge = GameObject.Find("JudgeText").GetComponent<Text>();
         textCombo = GameObject.Find("ComboText").GetComponent<Text>();
 
+        JudgeCnt = new Dictionary<string, int>();
+        JudgeCnt.Add("Worst", 0);
+        JudgeCnt.Add("Bad", 0);
+        JudgeCnt.Add("Soso", 0);
+        JudgeCnt.Add("Perfect", 0);
+        JudgeCnt.Add("Best", 0);
+
+
         SongScore = 0;
+
+
+
         Combo = 0;
-        MissCnt = 0;
-        GoodCnt = 0;
-        GreatCnt = 0;
+
+
+
         MaxCombo = 0;
 
         strJudge = "";
     }
 
-    public void ProcessScore(int judge)
+    public void ProcessScore(string judge)
     {
         // 0 : 미스, 1 : 굿, 2 : 그레잇
-        if(judge.Equals(0))
+        if(judge.Equals("Worst"))
         {
-            //SongScore -= 100;
-            strJudge = "MISS";
+            
             Combo = 0;
-            MissCnt++;
-            textJudge.color = Color.gray;
         }
-        else if(judge.Equals(1))
+        else
         {
-            SongScore += 50;
-            strJudge = "GOOD";
             Combo++;
-            GoodCnt++;
-            textJudge.color = Color.yellow;
+
         }
-        else if(judge.Equals(2))
-        {
-            SongScore += 100;
-            strJudge = "GREAT";
-            Combo++;
-            GreatCnt++;
-            textJudge.color = Color.blue;
-        }
+
+        JudgeCnt[judge]++;
+        strJudge = judge;
 
         SetMaxCombo();
         SetTextScore();

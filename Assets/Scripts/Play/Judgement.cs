@@ -51,7 +51,7 @@ public class Judgement : MonoBehaviour
             if (currentNoteTime1 + missRate <= currentTime)
             {
                 judgeLane1.Dequeue();
-                score.ProcessScore(0);
+                score.ProcessScore("Worst");
             }
         }
         
@@ -64,7 +64,7 @@ public class Judgement : MonoBehaviour
             if (currentNoteTime2 + missRate <= currentTime)
             {
                 judgeLane2.Dequeue();
-                score.ProcessScore(0);
+                score.ProcessScore("Worst");
             }
         }
 
@@ -77,7 +77,7 @@ public class Judgement : MonoBehaviour
             if (currentNoteTime3 + missRate <= currentTime)
             {
                 judgeLane3.Dequeue();
-                score.ProcessScore(0);
+                score.ProcessScore("Worst");
             }
         }
 
@@ -90,7 +90,7 @@ public class Judgement : MonoBehaviour
             if (currentNoteTime4 + missRate <= currentTime)
             {
                 judgeLane4.Dequeue();
-                score.ProcessScore(0);
+                score.ProcessScore("Worst");
             }
         }
     }
@@ -117,20 +117,20 @@ public class Judgement : MonoBehaviour
                     if (currentNoteTime1 > currentTime - greatRate && currentNoteTime1 < currentTime + greatRate)
                     {
                         judgeLane1.Dequeue();
-                        score.ProcessScore(2);
+                        score.ProcessScore("Soso");
                     }
                     // 굿판정
                     else
                     {
                         judgeLane1.Dequeue();
-                        score.ProcessScore(1);
+                        score.ProcessScore("Bad");
                     }
                 }
                 // 너무 빨리 입력했을때 미스처리
                 else
                 {
                     judgeLane1.Dequeue();
-                    score.ProcessScore(0);
+                    score.ProcessScore("Worst");
                 }
             }
         }
@@ -144,20 +144,20 @@ public class Judgement : MonoBehaviour
                     if (currentNoteTime2 > currentTime - greatRate && currentNoteTime2 < currentTime + greatRate)
                     {
                         judgeLane2.Dequeue();
-                        score.ProcessScore(2);
+                        score.ProcessScore("Soso");
                     }
                     // 굿판정
                     else
                     {
                         judgeLane2.Dequeue();
-                        score.ProcessScore(1);
+                        score.ProcessScore("Bad");
                     }
                 }
                 // 너무 빨리 입력했을때 미스처리
                 else
                 {
                     judgeLane2.Dequeue();
-                    score.ProcessScore(0);
+                    score.ProcessScore("Worst");
                 }
             }
         }
@@ -171,20 +171,20 @@ public class Judgement : MonoBehaviour
                     if (currentNoteTime3 > currentTime - greatRate && currentNoteTime3 < currentTime + greatRate)
                     {
                         judgeLane3.Dequeue();
-                        score.ProcessScore(2);
+                        score.ProcessScore("Soso");
                     }
                     // 굿판정
                     else
                     {
                         judgeLane3.Dequeue();
-                        score.ProcessScore(1);
+                        score.ProcessScore("Bad");
                     }
                 }
                 // 너무 빨리 입력했을때 미스처리
                 else
                 {
                     judgeLane3.Dequeue();
-                    score.ProcessScore(0);
+                    score.ProcessScore("Worst");
                 }
             }
         }
@@ -198,20 +198,20 @@ public class Judgement : MonoBehaviour
                     if (currentNoteTime4 > currentTime - greatRate && currentNoteTime4 < currentTime + greatRate)
                     {
                         judgeLane4.Dequeue();
-                        score.ProcessScore(2);
+                        score.ProcessScore("Soso");
                     }
                     // 굿판정
                     else
                     {
                         judgeLane4.Dequeue();
-                        score.ProcessScore(1);
+                        score.ProcessScore("Bad");
                     }
                 }
                 // 너무 빨리 입력했을때 미스처리
                 else
                 {
                     judgeLane4.Dequeue();
-                    score.ProcessScore(0);
+                    score.ProcessScore("Worst");
                 }
             }
         }
