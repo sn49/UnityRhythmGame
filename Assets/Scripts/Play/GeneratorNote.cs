@@ -45,14 +45,13 @@ public class GeneratorNote : MonoBehaviour
     // 노트생성
     void GenNote()
     {
-        int lanecount = 4;
-
-        for (int i = 0; i < lanecount; i++)//나중에 레인 여러개일수도
-        {
-            foreach (float noteTime in sheet.noteLists[i])
-                Instantiate(notePrefab, new Vector3(2.3f+0.66f*i, noteStartPosY + offset + notePosY * (noteTime * noteCorrectRate)), Quaternion.identity);
-
-        }
-
+        foreach(float noteTime in sheet.noteList1)
+            Instantiate(notePrefab, new Vector3(2.3f, noteStartPosY + offset +  notePosY * (noteTime * noteCorrectRate)), Quaternion.identity);
+        foreach (float noteTime in sheet.noteList2)
+            Instantiate(notePrefab, new Vector3(2.96f, noteStartPosY + offset +  notePosY * (noteTime * noteCorrectRate)), Quaternion.identity);
+        foreach (float noteTime in sheet.noteList3)
+            Instantiate(notePrefab, new Vector3(3.62f, noteStartPosY + offset +  notePosY * (noteTime * noteCorrectRate)), Quaternion.identity);
+        foreach (float noteTime in sheet.noteList4)
+            Instantiate(notePrefab, new Vector3(4.28f, noteStartPosY + offset +  notePosY * (noteTime * noteCorrectRate)), Quaternion.identity);
     }
 }
