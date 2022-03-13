@@ -30,7 +30,7 @@ public class ScoreDataCreator : MonoBehaviour
     // 학과 점수 저장
     public void SetClassScoreData(int className)
     {
-        List<int> tScoreList = new List<int>();
+        List<double> tScoreList = new List<double>();
 
         // 새로운 점수를 만들기 위해 기존의 데이터를 불러옴
         textAsset = Resources.Load("dt/Score") as TextAsset;
@@ -46,7 +46,7 @@ public class ScoreDataCreator : MonoBehaviour
             scoreTextSplit = scoreText.Split(',');
 
             // 기존 스코어와 추가된 스코어 합산
-            int tScore;
+            double tScore;
             tScore = Convert.ToInt32(scoreTextSplit[className]);
             tScore += score.SongScore;
 
@@ -81,7 +81,7 @@ public class ScoreDataCreator : MonoBehaviour
     public void SetSongScoreData(string songName, int className)
     {
 
-        List<int> tScoreList = new List<int>();
+        List<double> tScoreList = new List<double>();
 
         textAsset = Resources.Load(songName + "/" + songName + "_ScoreData") as TextAsset;
 
@@ -99,7 +99,7 @@ public class ScoreDataCreator : MonoBehaviour
             int tScore;
             tScore = Convert.ToInt32(scoreTextSplit[className]);
 
-            int maxScore = 0;
+            double maxScore = 0;
 
             // 기존보다 높다면 바꾸기, 아니라면 그대로
             if (score.SongScore > tScore)

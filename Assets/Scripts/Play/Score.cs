@@ -10,10 +10,11 @@ public class Score : MonoBehaviour
     Text textCombo;
 
 
-    public int SongScore { private set; get; }
-    public int MissCnt { private set; get; }
-    public int GoodCnt { private set; get; }
-    public int GreatCnt { private set; get; }
+    public double SongScore { private set; get; }
+
+    public Dictionary<string,int> JudgeCnt { private set; get; }
+
+
     public int Combo { private set; get; }
     public int MaxCombo { private set; get; }
 
@@ -33,41 +34,55 @@ public class Score : MonoBehaviour
 
         SongScore = 0;
         Combo = 0;
-        MissCnt = 0;
-        GoodCnt = 0;
-        GreatCnt = 0;
+
+        JudgeCnt = new Dictionary<string, int>();
+
+        JudgeCnt.Add("Worst", 0);
+        JudgeCnt.Add("Bad", 0);
+        JudgeCnt.Add("Soso", 0);
+        JudgeCnt.Add("Perfect", 0);
+        JudgeCnt.Add("Best", 0);
+
+
         MaxCombo = 0;
 
         strJudge = "";
     }
 
-    public void ProcessScore(int judge)
+    public void ProcessScore(string judge)
     {
-        // 0 : 미스, 1 : 굿, 2 : 그레잇
-        if(judge.Equals(0))
+        // 0 : worst, 1 : bad, 2 : soso, 3:perfect 4:best
+        if(judge.Equals("Worst"))
         {
-            //SongScore -= 100;
-            strJudge = "MISS";
             Combo = 0;
-            MissCnt++;
             textJudge.color = Color.gray;
         }
-        else if(judge.Equals(1))
+        else if(judge.Equals("Bad"))
         {
-            SongScore += 50;
-            strJudge = "GOOD";
             Combo++;
-            GoodCnt++;
             textJudge.color = Color.yellow;
         }
-        else if(judge.Equals(2))
+        else if(judge.Equals("Soso"))
         {
-            SongScore += 100;
-            strJudge = "GREAT";
             Combo++;
-            GreatCnt++;
             textJudge.color = Color.blue;
         }
+
+        strJudge = judge;
+        JudgeCnt[judge]++;
+
+        int sum = 0;
+
+
+
+        foreach (int v in JudgeCnt.Values)
+        {
+            sum += v;
+        }
+
+
+        SongScore = (JudgeCnt["Worst"] * 0 + JudgeCnt["Bad"] * 40 + JudgeCnt["Soso"] * 75 + JudgeCnt["Perfect"] * 95 + JudgeCnt["Best"] * 100) / sum;
+
 
         SetMaxCombo();
         SetTextScore();
