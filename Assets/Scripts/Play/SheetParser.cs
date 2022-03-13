@@ -16,7 +16,7 @@ public class SheetParser : MonoBehaviour
     string songName;
     string[] textSplit;
 
-    void Start()
+    void Awake()
     {
         sheet = GameObject.Find("Sheet").GetComponent<Sheet>();
         songManager = GameObject.Find("SongSelect").GetComponent<SongManager>();
@@ -76,10 +76,7 @@ public class SheetParser : MonoBehaviour
                         float.TryParse(textSplit[0], out noteTime);
                     }
 
-                    print(laneNumber);
-
                     sheet.SetNote(laneNumber, noteTime);
-                    
                 }
             }
         }
